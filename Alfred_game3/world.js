@@ -27,7 +27,8 @@ class world extends Phaser.Scene {
    this.load.image("Roo1", "assets/Roo1.png");
    this.load.image("intro", "assets/21.jpeg");
    this.load.image("intro2", "assets/22.jpeg");
-  //  this.load.image("intro3", "assets/22.jpeg");
+  
+  this.load.image("6e", "assets/gather_floors_1.5.png");
 
 
    //Character
@@ -35,9 +36,16 @@ class world extends Phaser.Scene {
    this.load.atlas('monster','assets/monster.png','assets/monster.json');
    this.load.atlas('bibi','assets/npc.png','assets/npc.json');
    this.load.atlas('bubu','assets/bomb.png','assets/bomb.json');
+   this.load.atlas('item','assets/item.png','assets/item.json');
+
 
    //item
    // this.load.atlas('item','assets/item.png','assets/item.json');
+
+   //audio
+   this.load.audio("bg","assets/funday.mp3");
+   this.load.audio("gg","assets/gg.wav");
+
 
   }
 
@@ -45,6 +53,7 @@ class world extends Phaser.Scene {
 
     
     console.log("*** world scene");
+    this.sound3 = this.sound.add("gg").setVolume(0.1);
 
     
 
@@ -57,25 +66,23 @@ class world extends Phaser.Scene {
     var groundss = map.addTilesetImage("Roo1", "Roo1");
     var deco2 = map.addTilesetImage("Inte1","Inte1");
     var decoration = map.addTilesetImage("farm1","farm1");
+    var dij = map.addTilesetImage("gather_floors_1.5","6e");
+    var coin = map.addTilesetImage("item","item");
 
-    let tilesArray = [ groundss,deco2, decoration ];
+
+
+    let tilesArray = [ groundss,deco2, decoration, dij, coin ];
 
 
     // Step 5  Load in layers by layers
     this.ground = map.createLayer("ground",tilesArray, 0, 0);
     this.decoo = map.createLayer("deco2", tilesArray,0,0);
     this.decooo = map.createLayer("decoration",tilesArray,0,0);
-    // this.itemcollect = map.createLayer("itemcollect",titi,0,0); 
+    this.dec13 = map.createLayer("Tile Layer 4",tilesArray,0,0);
+    this.collectItem = map.createLayer("collectitem",tilesArray,0,0);
 
-     // load fire objects
-     var start = map.findObject("objectLayer", (obj) => obj.name === "Start");
-     var fire1 = map.findObject("objectLayer", (obj) => obj.name ==="fire1");
-     var simi1 = map.findObject("objectLayer", (obj) => obj.name ==="simi1");
-     var simi2 = map.findObject("objectLayer", (obj) => obj.name ==="simi2");
 
-    // this.sound1 = this.sound.add('Is');
-    // this.sound2 = this.sound.add('Bs');
-    // this.sound3 = this.sound.add('Ds');
+
 
 
 
@@ -139,20 +146,13 @@ this.anims.create({
   repeat:-1,
 })
 
-    // this.fire1 = this.physics.add.sprite (fire1.x, fire1.y, 'fire1').play('hihi');
-    // this.simi1 = this.physics.add.sprite (simi1.x, simi1.y, 'simi1').play('lala');
-    // this.simi2 = this.physics.add.sprite (simi2.x, simi2.y, 'simi2').play('dudu');
-  
     
     
 
     //npc movement
-    // this.simi1 = this.physics.add.sprite(333.33, 1073.33,"simi1").play("lala");
-    // this.simi2 = this.physics.add.sprite(237, 696,"simi1").play("lala");
-    // this.simi3 = this.physics.add.sprite(509.33, 400,"simi1").play("lala");
-    // this.simi4 = this.physics.add.sprite(1069.33, 302.67,"simi1").play("lala");
-    // this.fire = this.physics.add.sprite(1006.67, 685.33,"fire").play("hihi");
-    // this.fire2 = this.physics.add.sprite(974.67, 402.67,"fire").play("hihi");
+    this.simi1 = this.physics.add.sprite(322, 1196,"simi1").play("lala");
+    this.simi2 = this.physics.add.sprite(646, 880,"simi1").play("lala");
+    this.simi3 = this.physics.add.sprite(509, 430,"simi1").play("lala");
     // this.fire3 = this.physics.add.sprite(112, 305.33,"fire").play("hihi");
 
     // set the boundaries of our game world
@@ -167,7 +167,7 @@ this.anims.create({
       this.playerPos.y,
       this.playerPos.dir);
       window.player = this.player;
-    this.player.setScale(1).setSize(32, 32);
+    this.player.setScale(0.7).setSize(32, 32);
     this.player.setCollideWorldBounds(true); // don't go out of the this.map
 
     //icon on left up
@@ -187,7 +187,8 @@ this.anims.create({
     // .setVisible(false);
 
     // // get the tileIndex number in json, +1
-    // this.itemcollect.setTileIndexCallback(3042, this.removeItem3, this);
+    
+    this.collectItem.setTileIndexCallback(0, this.removeItem, this.player);
     
 
     // //npc border
@@ -209,26 +210,6 @@ this.anims.create({
       loop: false,
     });
 
-    this.time.addEvent({
-    delay: 1000,
-    callback: this.moveSquare,
-    callbackScope: this,
-    loop: false,
-  });
-
-  this.time.addEvent({
-    delay: 0,
-    callback: this.moveDownUp,
-    callbackScope: this,
-    loop: false,
-  });
-
-  this.time.addEvent({
-    delay: 0,
-    callback: this.moveDownUp2,
-    callbackScope: this,
-    loop: false,
-  });
 
   this.time.addEvent({
     delay: 1000,
@@ -237,21 +218,10 @@ this.anims.create({
     loop: false,
   });
 
-  this.time.addEvent({
-    delay: 1000,
-    callback: this.moveLeftRight4,
-    callbackScope: this,
-    loop: false,
-  });
-
     //npc overlape
-    // this.physics.add.overlap(this.player, this.simi1,this.enemyOverlap, null, this);
-    // this.physics.add.overlap(this.player, this.simi2,this.enemyOverlap, null, this);
-    // this.physics.add.overlap(this.player, this.simi3,this.enemyOverlap, null, this);
-    // this.physics.add.overlap(this.player, this.fire,this.enemyOverlap, null, this);
-    // this.physics.add.overlap(this.player, this.fire2,this.enemyOverlap, null, this);
-    // this.physics.add.overlap(this.player, this.fire3,this.enemyOverlap, null, this);
-    // this.physics.add.overlap(this.player, this.simi4,this.enemyOverlap, null, this);
+    this.physics.add.overlap(this.player, this.simi1,this.enemyOverlap, null, this);
+    this.physics.add.overlap(this.player, this.simi2,this.enemyOverlap, null, this);
+    this.physics.add.overlap(this.player, this.simi3,this.enemyOverlap, null, this);
 
 
 
@@ -272,7 +242,7 @@ this.anims.create({
      this.cameras.main.setBounds(0, 0, map.widthInPixels, map.heightInPixels);
 
      // What will collider witg what layers
-    // this.physics.add.collider(this.itemcollect, this.player);
+    this.physics.add.collider(this.collectItem, this.player);
 
 
     // if (window.icon === 3) {
@@ -298,10 +268,10 @@ this.anims.create({
       duration: 2000,
       tweens: [
         {
-          x: 142.67,
+          x: 322,
         },
         {
-          x: 333.33,
+          x: 432,
         },
       ],
     });
@@ -316,110 +286,33 @@ this.anims.create({
       duration: 2000,
       tweens: [
         {
-          x: 50,
+          x: 646,
         },
         {
-          x: 237,
+          x: 608,
         },
       ],
     });
   }
 
-  moveSquare() {
-    console.log("moveSquare");
+  moveLeftRight3() {
+    console.log("moveLeftRight3");
     this.tweens.timeline({
       targets: this.simi3,
       ease: "Linear",
       loop: -1, // loop forever
-      duration: 800,
-  
+      duration: 2000,
       tweens: [
         {
-          y: 698.67,
+          x: 509,
         },
         {
-          x: 830.67,
-        },
-        
-        {
-          y: 400,
-        },
-        {
-          x: 509.33,
+          x: 734,
         },
       ],
     });
   }
 
-  moveDownUp() {
-    console.log("moveDownUp");
-    this.tweens.timeline({
-      targets: this.fire,
-      ease: "Linear",
-      loop: -1, // loop forever
-      duration: 1500,
-      tweens: [
-        {
-          y: 782.67,
-        },
-        {
-          y: 685.33,
-        },
-      ],
-    });
-  }
-
-  moveDownUp2() {
-    console.log("moveDownUp2");
-    this.tweens.timeline({
-      targets: this.fire2,
-      ease: "Linear",
-      loop: -1, // loop forever
-      duration: 1500,
-      tweens: [
-        {
-          y: 298.67,
-        },
-        {
-          y: 402.67,
-        },
-      ],
-    });
-  }
-  moveLeftRight3() {
-    console.log("moveLeftRight3");
-    this.tweens.timeline({
-      targets: this.simi4,
-      ease: "Linear",
-      loop: -1, // loop forever
-      duration: 2000,
-      tweens: [
-        {
-          x: 1168,
-        },
-        {
-          x: 1069.33,
-        },
-      ],
-    });
-  }
-  moveLeftRight4() {
-    console.log("moveLeftRight4");
-    this.tweens.timeline({
-      targets: this.fire3,
-      ease: "Linear",
-      loop: -1, // loop forever
-      duration: 2000,
-      tweens: [
-        {
-          x: 368,
-        },
-        {
-          x: 112,
-        },
-      ],
-    });
-  }
 
   update(time, delta) {
 
@@ -449,31 +342,15 @@ this.anims.create({
     ) {
       this.room2();
     }
-    // if (
-    //   this.player.x > 152 &&
-    //   this.player.x < 291 &&
-    //   this.player.y > 196 &&
-    //   this.player.y < 258
-    // ) {
-    //   this.room1();
-    // }
-    // if (
-    //   this.player.x > 1079 &&
-    //   this.player.x < 1220 &&
-    //   this.player.y > 606 &&
-    //   this.player.y < 640
-    // ) {
-    //   this.room1();
-    // }
-    // //room2
-    // if (
-    //   this.player.x > 1056 &&
-    //   this.player.x < 1147 &&
-    //   this.player.y > 198 &&
-    //   this.player.y < 272
-    // ) {
-    //   this.room2();
-    // }
+    if (
+      this.player.x > 509 &&
+      this.player.x < 634 &&
+      this.player.y > 379 &&
+      this.player.y < 410
+    ) {
+      this.room3();
+    }
+    
 
     // this.fireGroup.children.iterate((fire) => {
     //   this.physics.moveToObject(fire, this.player, 30, 3000);
@@ -527,6 +404,15 @@ this.anims.create({
     this.scene.start("room2",{ playerPos: playerPos});
   }
 
+  room3(player, tile) {
+    console.log("room2 function");
+    let playerPos = {};
+    playerPos.x = 538;
+    playerPos.y = 496;
+    playerPos.dir = "up";
+    this.scene.start("room3",{ playerPos: playerPos});
+  }
+
   // removeItem1(player, tile) {
   //   this.sound1.play();
 
@@ -547,24 +433,24 @@ this.anims.create({
   //   window.icon++;
   //   return false;
   // }
-  // removeItem3(player, tile) {
-  //   this.sound1.play();
+  removeItem(player, tile) {
+    // this.sound1.play();
 
-  //   // this.itemcollect++;
-  //   console.log("remove item3", tile.index);
-  //   this.itemcollect.removeTileAt(tile.x, tile.y);
-  //   this.icon3.setVisible(true); 
-  //   window.icon++;
-  //   return false;
-  // }
+    // this.itemcollect++;
+    console.log("remove item", tile.index);
+    this.collectItem.removeTileAt(tile.x, tile.y);
+    // this.icon3.setVisible(true); 
+    window.icon++;
+    return false;
+  }
 
-  // enemyOverlap(){
-  //   this.sound3.play();
+  enemyOverlap(){
+    this.sound3.play();
 
-  //   console.log(" enemy overlap player");
-  //   // this.cameras.main.shake(200);
-  //   this.scene.start("over");
-  // }
+    console.log(" enemy overlap player");
+    // this.cameras.main.shake(200);
+    this.scene.start("over");
+  }
 
   // winLiao(){
   //   console.log(" player win");

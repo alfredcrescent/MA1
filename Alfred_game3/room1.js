@@ -72,7 +72,8 @@ class room1 extends Phaser.Scene {
      this.player = this.physics.add.sprite(
       this.playerPos.x,
       this.playerPos.y,
-      this.playerPos.dir
+      this.playerPos.dir,
+      this.playerPos.Scale,
     );
 
      //icon on left up

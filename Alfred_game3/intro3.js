@@ -131,8 +131,8 @@ class intro3 extends Phaser.Scene {
       function () {
         console.log("Jump to world scene");
         let playerPos = {};
-        playerPos.x = 772;
-        playerPos.y = 1240;
+        playerPos.x = 602;
+        playerPos.y = 1225;
         playerPos.dir = "dashu";
         this.scene.start("world", { playerPos: playerPos });
       },

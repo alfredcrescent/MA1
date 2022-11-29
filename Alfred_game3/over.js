@@ -42,79 +42,7 @@ class over extends Phaser.Scene {
 
 
 
-    this.anims.create({
-      key: "up",
-      frames:[
-        {key:'dashu', frame: 'b1.png'},
-        {key:'dashu', frame: 'b2.png'},
-        {key:'dashu', frame: 'b3.png'}, 
-    ],
-      frameRate: 10,
-      repeat: -1,
-    });
-
-    this.anims.create({
-      key: "left",
-      frames:[
-        {key:'dashu', frame:'l1.png'},
-        {key:'dashu', frame:'l2.png'},
-        {key:'dashu', frame:'l3.png'},
-    ],
-      frameRate: 10,
-      repeat: -1,
-    });
-
-    this.anims.create({
-      key: "down",
-      frames:[
-        {key:'dashu', frame: 'f1.png'},
-        {key:'dashu', frame: 'f2.png'},
-        {key:'dashu', frame: 'f3.png'}, 
-    ],
-      frameRate: 10,
-      repeat: -1,
-    });
-
-    this.anims.create({
-      key: "right",
-      frames:[
-        {key:'dashu', frame: 'r1.png'},
-        {key:'dashu', frame: 'r2.png'},
-        {key:'dashu', frame: 'r3.png'}, 
-    ],
-      frameRate: 10,
-      repeat: -1,
-    });
-
-    this.anims.create({
-      key:'hihi',
-      frames:[
-          {key:'bubu', frame:'bomb1.png'},
-          {key:'bubu', frame:'bomb2.png'},
-          {key:'bubu', frame:'bomb3.png'},
-          {key:'bubu', frame:'bomb4.png'},
-          {key:'bubu', frame:'bomb5.png'},
-
-      ],
-      frameRate:10,
-      repeat:-1,
-  })
-
-  this.anims.create({
-    key:'lala',
-    frames:[
-        {key:'monster', frame:'left1.png'},
-        {key:'monster', frame:'left2.png'},
-        {key:'monster', frame:'middle.png'},
-        {key:'monster', frame:'right1.png'},
-        {key:'monster', frame:'right2.png'},
-
-    ],
-    frameRate:10,
-    repeat:-1,
-  })
-
-  
+    
 
     // Add any sound and music here
     // ( 0 = mute to 1 is loudest )
@@ -135,8 +63,8 @@ class over extends Phaser.Scene {
       function () {
         console.log("Jump to world scene");
         let playerPos = {};
-        playerPos.x = 772;
-        playerPos.y = 1240;
+        playerPos.x = 602;
+        playerPos.y = 1225;
         playerPos.dir = "dashu";
         this.scene.start("world", { playerPos: playerPos });
       },

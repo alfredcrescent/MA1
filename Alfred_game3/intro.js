@@ -28,12 +28,17 @@ class intro extends Phaser.Scene {
 
     //item
     // this.load.atlas('item','assets/item.png','assets/item.json');
+
+
+    
+    
   }
 
   create() {
     console.log("*** intro scene");
     this.add.image(0, 0, 'intro').setOrigin(0, 0).setScale(0.6);
 
+  
 
 
     this.anims.create({

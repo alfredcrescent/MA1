@@ -17,7 +17,7 @@ class main extends Phaser.Scene {
    this.load.image("Floor1", "assets/floor1.png");
    this.load.image("Inte1", "assets/Inte1.png");
    this.load.image("Roo1", "assets/Roo1.png");
-  //  this.load.image("cover", "assets/21.jpeg");
+   this.load.image("gatherfll", "assets/gather_floors_1.5.jpeg");
    this.load.image("intro", "assets/21.jpeg");
    this.load.image("intro2", "assets/22.jpeg");
    
@@ -30,7 +30,7 @@ class main extends Phaser.Scene {
 
 
    //Character
-   this.load.atlas('dashu','assets/maincharacter.png','assets/maincharacter.json');
+   this.load.atlas('dashu','assets/character.png','assets/character.json');
    this.load.atlas('monster','assets/monster.png','assets/monster.json');
    this.load.atlas('bibi','assets/npc.png','assets/npc.json');
    this.load.atlas('bubu','assets/bomb.png','assets/bomb.json');
@@ -43,9 +43,11 @@ class main extends Phaser.Scene {
     // this.load.image("icon2", "assets/roller.png");
     // this.load.image("icon3", "assets/weapon.png");
 
-     //audio
-    //  this.load.audio("Is","assets/cs.wav");
-    //  this.load.audio("Bs","assets/bg2.mp3");
+       
+   //audio
+   this.load.audio("bg","assets/funday.mp3");
+  
+
  
   }
 
@@ -55,19 +57,18 @@ class main extends Phaser.Scene {
 
 
     // this.sound1 = this.sound.add('Is');
-    // this.sound2 = this.sound.add('Bs');
 
 
-    // this.music = this.sound.add("Bs",{loop:true,}).setVolume(0.1);
-    // this.music.play();
+    this.music = this.sound.add("bg",{loop:true,}).setVolume(0.1);
+    this.music.play();
     
 
     this.anims.create({
       key: "up",
       frames:[
-        {key:'dashu', frame: 'b1.png'},
-        {key:'dashu', frame: 'b2.png'},
-        {key:'dashu', frame: 'b3.png'}, 
+        {key:'dashu', frame: 'back left.png'},
+        {key:'dashu', frame: 'back.png'},
+        {key:'dashu', frame: 'back right.png'}, 
     ],
       frameRate: 10,
       repeat: -1,
@@ -76,9 +77,9 @@ class main extends Phaser.Scene {
     this.anims.create({
       key: "left",
       frames:[
-        {key:'dashu', frame:'l1.png'},
-        {key:'dashu', frame:'l2.png'},
-        {key:'dashu', frame:'l3.png'},
+        {key:'dashu', frame:'left side left.png'},
+        {key:'dashu', frame:'left side.png'},
+        {key:'dashu', frame:'left side right.png'},
     ],
       frameRate: 10,
       repeat: -1,
@@ -87,9 +88,9 @@ class main extends Phaser.Scene {
     this.anims.create({
       key: "down",
       frames:[
-        {key:'dashu', frame: 'f1.png'},
-        {key:'dashu', frame: 'f2.png'},
-        {key:'dashu', frame: 'f3.png'}, 
+        {key:'dashu', frame: 'front right.png'},
+        {key:'dashu', frame: 'front.png'},
+        {key:'dashu', frame: 'front left.png'}, 
     ],
       frameRate: 10,
       repeat: -1,
@@ -98,9 +99,9 @@ class main extends Phaser.Scene {
     this.anims.create({
       key: "right",
       frames:[
-        {key:'dashu', frame: 'r1.png'},
-        {key:'dashu', frame: 'r2.png'},
-        {key:'dashu', frame: 'r3.png'}, 
+        {key:'dashu', frame: 'right side left.png'},
+        {key:'dashu', frame: 'right side.png'},
+        {key:'dashu', frame: 'right side right.png'}, 
     ],
       frameRate: 10,
       repeat: -1,
