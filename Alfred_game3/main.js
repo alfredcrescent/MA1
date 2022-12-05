@@ -52,9 +52,7 @@ class main extends Phaser.Scene {
     this.anims.create({
       key: "up",
       frames:[
-        {key:'dashu', frame: 'back left.png'},
-        {key:'dashu', frame: 'back.png'},
-        {key:'dashu', frame: 'back right.png'}, 
+        {key:'dashu', frame: 'character_front.png'},
     ],
       frameRate: 10,
       repeat: -1,
@@ -63,9 +61,7 @@ class main extends Phaser.Scene {
     this.anims.create({
       key: "left",
       frames:[
-        {key:'dashu', frame:'left side left.png'},
-        {key:'dashu', frame:'left side.png'},
-        {key:'dashu', frame:'left side right.png'},
+        {key:'dashu', frame:'character_left.png'},
     ],
       frameRate: 10,
       repeat: -1,
@@ -74,9 +70,7 @@ class main extends Phaser.Scene {
     this.anims.create({
       key: "down",
       frames:[
-        {key:'dashu', frame: 'front right.png'},
-        {key:'dashu', frame: 'front.png'},
-        {key:'dashu', frame: 'front left.png'}, 
+        {key:'dashu', frame: 'character_right.png'},
     ],
       frameRate: 10,
       repeat: -1,
@@ -85,9 +79,7 @@ class main extends Phaser.Scene {
     this.anims.create({
       key: "right",
       frames:[
-        {key:'dashu', frame: 'right side left.png'},
-        {key:'dashu', frame: 'right side.png'},
-        {key:'dashu', frame: 'right side right.png'}, 
+        {key:'dashu', frame: 'character_left.png'},
     ],
       frameRate: 10,
       repeat: -1,
