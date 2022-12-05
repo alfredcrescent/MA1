@@ -18,15 +18,14 @@ class intro3 extends Phaser.Scene {
    this.load.image("Inte1", "assets/Inte1.png");
    this.load.image("Roo1", "assets/Roo1.png");
    this.load.image("intro", "assets/21.jpeg");
-   this.load.image("intro2", "assets/22.jpeg");
+   this.load.image("intro3", "assets/77.png");
+
   //  this.load.image("intro3", "assets/22.jpeg");
 
 
    //Character
    this.load.atlas('dashu','assets/maincharacter.png','assets/maincharacter.json');
-   this.load.atlas('monster','assets/monster.png','assets/monster.json');
-   this.load.atlas('bibi','assets/npc.png','assets/npc.json');
-   this.load.atlas('bubu','assets/bomb.png','assets/bomb.json');
+   this.load.atlas('monster','assets/texture.png','assets/texture.json');
 
    //item
    // this.load.atlas('item','assets/item.png','assets/item.json');
@@ -34,7 +33,7 @@ class intro3 extends Phaser.Scene {
 
   create() {
     console.log("*** intro3 scene");
-    this.add.image(0, 0, 'intro2').setOrigin(0, 0).setScale(0.6);
+    this.add.image(0, 0, 'intro3').setOrigin(0, 0).setScale(0.145);
 
 
 
@@ -101,7 +100,7 @@ class intro3 extends Phaser.Scene {
     frames:[
         {key:'monster', frame:'left1.png'},
         {key:'monster', frame:'left2.png'},
-        {key:'monster', frame:'middle.png'},
+        {key:'monster', frame:'front.png'},
         {key:'monster', frame:'right1.png'},
         {key:'monster', frame:'right2.png'},
 

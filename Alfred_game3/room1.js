@@ -21,6 +21,7 @@ class room1 extends Phaser.Scene {
     this.load.image("mus", "assets/22_Museum_32x32.png");
     this.load.image("Bathroom", "assets/Bathroom.png");
     this.load.image("wall", "assets/wall.png");
+    
 
     // //item
     // this.load.atlas('item','assets/item.png','assets/item.json');
@@ -139,9 +140,9 @@ class room1 extends Phaser.Scene {
 
     //Exit for room 1
     if (
-      this.player.x > 478.50 &&
-      this.player.x < 542 &&
-      this.player.y > 611.51 )
+      this.player.x > 480 &&
+      this.player.x < 571 &&
+      this.player.y > 583 )
       {
       this.world();
     }

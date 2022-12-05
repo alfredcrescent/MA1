@@ -195,9 +195,9 @@ class room3 extends Phaser.Scene {
     //Exit for room 1
     if (
       this.player.x > 0 &&
-      this.player.x < 20 &&
-      this.player.y > 550 && 
-      this.player.x < 617  )
+      this.player.x < 40 &&
+      this.player.y > 552 && 
+      this.player.y < 620  )
       {
       this.world();
     }

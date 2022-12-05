@@ -6,6 +6,8 @@ class world extends Phaser.Scene {
   }
 
 
+  
+
   // incoming data from scene below
   init(data) {
     this.playerPos = data.playerPos
@@ -13,6 +15,9 @@ class world extends Phaser.Scene {
 }
 
   preload() {
+
+
+ 
 
     
 
@@ -27,15 +32,16 @@ class world extends Phaser.Scene {
    this.load.image("Roo1", "assets/Roo1.png");
    this.load.image("intro", "assets/21.jpeg");
    this.load.image("intro2", "assets/22.jpeg");
+   this.load.image("rubbish", "assets/bananapeel3.png");
+
   
   this.load.image("6e", "assets/gather_floors_1.5.png");
 
 
+
    //Character
+   this.load.atlas('monster','assets/texture.png','assets/texture.json');
    this.load.atlas('dashu','assets/maincharacter.png','assets/maincharacter.json');
-   this.load.atlas('monster','assets/monster.png','assets/monster.json');
-   this.load.atlas('bibi','assets/npc.png','assets/npc.json');
-   this.load.atlas('bubu','assets/bomb.png','assets/bomb.json');
    this.load.atlas('item','assets/item.png','assets/item.json');
 
 
@@ -51,11 +57,12 @@ class world extends Phaser.Scene {
 
   create() {
 
+
     
     console.log("*** world scene");
     this.sound3 = this.sound.add("gg").setVolume(0.1);
 
-    
+
 
     //Step 3 - Create the map from main
     var map = this.make.tilemap({key:'world'});
@@ -68,6 +75,8 @@ class world extends Phaser.Scene {
     var decoration = map.addTilesetImage("farm1","farm1");
     var dij = map.addTilesetImage("gather_floors_1.5","6e");
     var coin = map.addTilesetImage("item","item");
+    var rubbish2 = map.addTilesetImage("bananapeel3","rubbish");
+
 
 
 
@@ -79,33 +88,16 @@ class world extends Phaser.Scene {
     this.decoo = map.createLayer("deco2", tilesArray,0,0);
     this.decooo = map.createLayer("decoration",tilesArray,0,0);
     this.dec13 = map.createLayer("Tile Layer 4",tilesArray,0,0);
-    this.collectItem = map.createLayer("collectitem",tilesArray,0,0);
+    this.itemcollectss = map.createLayer("collectitem",rubbish2,0,0);
 
 
-
-
-
-
-    this.anims.create({
-      key:'hihi',
-      frames:[
-          {key:'bubu', frame:'bomb1.png'},
-          {key:'bubu', frame:'bomb2.png'},
-          {key:'bubu', frame:'bomb3.png'},
-          {key:'bubu', frame:'bomb4.png'},
-          {key:'bubu', frame:'bomb5.png'},
-
-      ],
-      frameRate:10,
-      repeat:-1,
-  })
 
   this.anims.create({
     key:'lala',
     frames:[
         {key:'monster', frame:'left1.png'},
         {key:'monster', frame:'left2.png'},
-        {key:'monster', frame:'middle.png'},
+        {key:'monster', frame:'front1.png'},
         {key:'monster', frame:'right1.png'},
         {key:'monster', frame:'right2.png'},
 
@@ -114,46 +106,13 @@ class world extends Phaser.Scene {
     repeat:-1,
   })
 
-  this.anims.create({
-    key:'dudu',
-    frames:[
-        // {key:'bibi', frame:'back.png'},
-        // {key:'bibi', frame:'front.png'},
-        {key:'bibi', frame:'left1.png'},
-        {key:'bibi', frame:'left2.png'},
-        {key:'bibi', frame:'left3.png'},
-        // {key:'bibi', frame:'right1.png'},
-        // {key:'bibi', frame:'right2.png'},
-        // {key:'bibi', frame:'right3.png'},
-    ],
-    frameRate:10,
-    repeat:-1,
-})
-
-this.anims.create({
-  key:'dede',
-  frames:[
-      // {key:'bibi', frame:'back.png'},
-      // {key:'bibi', frame:'front.png'},
-      // {key:'bibi', frame:'left1.png'},
-      // {key:'bibi', frame:'left2.png'},
-      // {key:'bibi', frame:'left3.png'},
-      {key:'bibi', frame:'right1.png'},
-      {key:'bibi', frame:'right2.png'},
-      {key:'bibi', frame:'right3.png'},
-  ],
-  frameRate:10,
-  repeat:-1,
-})
-
-    
-    
 
     //npc movement
     this.simi1 = this.physics.add.sprite(322, 1196,"simi1").play("lala");
     this.simi2 = this.physics.add.sprite(646, 880,"simi1").play("lala");
     this.simi3 = this.physics.add.sprite(509, 430,"simi1").play("lala");
-    // this.fire3 = this.physics.add.sprite(112, 305.33,"fire").play("hihi");
+
+    
 
     // set the boundaries of our game world
     this.physics.world.bounds.width = this.ground.width;
@@ -169,28 +128,7 @@ this.anims.create({
       window.player = this.player;
     this.player.setScale(0.7).setSize(32, 32);
     this.player.setCollideWorldBounds(true); // don't go out of the this.map
-
-    //icon on left up
-    // this.icon1 = this.physics.add.sprite 
-    // (50,50,"icon1")
-    // .setScrollFactor(0)
-    // .setVisible(false);
-
-    // this.icon2 = this.physics.add.sprite 
-    // (100,50,"icon2")
-    // .setScrollFactor(0)
-    // .setVisible(false);
-
-    // this.icon3 = this.physics.add.sprite 
-    // (150,50,"icon3")
-    // .setScrollFactor(0)
-    // .setVisible(false);
-
-    // // get the tileIndex number in json, +1
     
-    this.collectItem.setTileIndexCallback(0, this.removeItem, this.player);
-    
-
     // //npc border
     // this.physics.add.collider(this.player,this.simi1);
     // this.physics.add.collider(this.street2, this.simi1);
@@ -234,27 +172,25 @@ this.anims.create({
     // the this.player will collide with this layer
     this.decoo.setCollisionByProperty({ dog: true, fish: true,  });
     this.decooo.setCollisionByProperty({ dog: true, fish: true, });
+    // this.itemcollect.setCollisionByProperty({ banana: true });
+
 
     // this.playerwill collide with the level tiles
     this.physics.add.collider(this.decooo, this.player);
     this.physics.add.collider(this.decoo, this.player);
      // set bounds so the camera won't go outside the game world
      this.cameras.main.setBounds(0, 0, map.widthInPixels, map.heightInPixels);
+     
+    this.itemcollectss.setTileIndexCallback(7657, this.removeItem1,this);
+    this.physics.add.collider(this.player, this.itemcollectss);
 
-     // What will collider witg what layers
-    this.physics.add.collider(this.collectItem, this.player);
+    
+    this.icon1 = this.physics.add.sprite 
+    (50,50,"rubbish")
+    .setScale(1)
+    .setScrollFactor(0)
+    .setVisible(false);
 
-
-    // if (window.icon === 3) {
-    //   this.icon1.setVisible(true);
-    //   this.icon2.setVisible(true);
-    //   this.icon3.setVisible(true);
-    //   } else if (window.icon === 2) {
-    //   this.icon1.setVisible(true);
-    //   this.icon3.setVisible(true);
-    //   } else if (window.icon === 1) {
-    //   this.icon1.setVisible(true);
-    //   } 
    
   } /////////////////// end of create //////////////////////////////
 
@@ -350,6 +286,14 @@ this.anims.create({
     ) {
       this.room3();
     }
+    if (
+      this.player.x > 1206 &&
+      this.player.x < 1246 &&
+      this.player.y > 228 &&
+      this.player.y < 313 && window.icon >=1
+    ) {
+      this.winLiao();
+    }
     
 
     // this.fireGroup.children.iterate((fire) => {
@@ -413,36 +357,18 @@ this.anims.create({
     this.scene.start("room3",{ playerPos: playerPos});
   }
 
-  // removeItem1(player, tile) {
-  //   this.sound1.play();
-
-  //   // this.itemcollect++;
-  //   console.log("remove item1", tile.index);
-  //   this.itemcollect.removeTileAt(tile.x, tile.y);
-  //   this.icon1.setVisible(true); 
-  //   window.icon++;
-  //   return false;
-  // }
-  // removeItem2(player, tile) {
-  //   this.sound1.play();
-
-  //   // this.itemcollect++;
-  //   console.log("remove item2", tile.index);
-  //   this.itemcollect.removeTileAt(tile.x, tile.y);
-  //   this.icon2.setVisible(true); 
-  //   window.icon++;
-  //   return false;
-  // }
-  removeItem(player, tile) {
+  removeItem1(player, tile) {
     // this.sound1.play();
 
     // this.itemcollect++;
-    console.log("remove item", tile.index);
-    this.collectItem.removeTileAt(tile.x, tile.y);
-    // this.icon3.setVisible(true); 
+    console.log("remove item1", tile.index);
+    this.itemcollectss.removeTileAt(tile.x, tile.y);
+    this.cameras.main.shake(100);
+    this.icon1.setVisible(true); 
     window.icon++;
     return false;
   }
+  
 
   enemyOverlap(){
     this.sound3.play();
@@ -452,10 +378,11 @@ this.anims.create({
     this.scene.start("over");
   }
 
-  // winLiao(){
-  //   console.log(" player win");
-  //   this.scene.start("win");
-  // }
+
+  winLiao(){
+    console.log(" player win");
+    this.scene.start("win");
+  }
 
 } //////////// end of class world ////////////////////////
 

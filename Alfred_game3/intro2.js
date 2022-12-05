@@ -18,15 +18,13 @@ class intro2 extends Phaser.Scene {
    this.load.image("Inte1", "assets/Inte1.png");
    this.load.image("Roo1", "assets/Roo1.png");
    this.load.image("intro", "assets/21.jpeg");
-   this.load.image("intro2", "assets/22.jpeg");
+   this.load.image("intro2", "assets/66.png");
 
 
 
    //Character
    this.load.atlas('dashu','assets/character.png','assets/character.json');
-   this.load.atlas('monster','assets/monster.png','assets/monster.json');
-   this.load.atlas('bibi','assets/npc.png','assets/npc.json');
-   this.load.atlas('bubu','assets/bomb.png','assets/bomb.json');
+   this.load.atlas('monster','assets/texture.png','assets/texture.json');
 
    //item
    // this.load.atlas('item','assets/item.png','assets/item.json');
@@ -34,7 +32,7 @@ class intro2 extends Phaser.Scene {
 
   create() {
     console.log("*** intro2 scene");
-    this.add.image(0, 0, 'intro2').setOrigin(0, 0).setScale(0.6);
+    this.add.image(0, 0, 'intro2').setOrigin(0, 0).setScale(0.145);
   
 
     // Add any sound and music here

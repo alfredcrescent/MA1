@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.5" tiledversion="1.7.2" orientation="orthogonal" renderorder="right-down" width="20" height="20" tilewidth="32" tileheight="32" infinite="0" nextlayerid="14" nextobjectid="6">
+<map version="1.9" tiledversion="1.9.2" orientation="orthogonal" renderorder="right-down" width="20" height="20" tilewidth="32" tileheight="32" infinite="0" nextlayerid="16" nextobjectid="11">
  <editorsettings>
   <export target="maps4.json" format="json"/>
  </editorsettings>
@@ -8611,8 +8611,8 @@
 0,0,0,8673,8674,8675,8676,8677,8678,0,0,0,0,0,8788,8789,8790,8791,0,0,
 0,0,0,8689,8690,8691,8692,8693,8694,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,8657,8658,8659,8660,8661,8662,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,8673,8674,8675,8676,8677,8678,0,0,0,0,0,0,0,0,
-3967,0,0,0,0,0,8689,8690,8691,8692,8693,8694,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+3967,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 4147,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 4327,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>

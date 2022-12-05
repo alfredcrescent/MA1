@@ -24,7 +24,7 @@ class over extends Phaser.Scene {
     this.load.image("intro", "assets/intro.png");
     this.load.image("intro2", "assets/intro2.png");
     this.load.image("intro3", "assets/intro3.png");
-    this.load.image("end", "assets/end.png");
+    this.load.image("end", "assets/lose.png");
 
     //Character
     this.load.atlas('dashu','assets/maincharacter.png','assets/maincharacter.json');
@@ -38,7 +38,7 @@ class over extends Phaser.Scene {
 
   create() {
     console.log("*** end scene");
-    this.add.image(0, 0, 'end').setOrigin(0, 0).setScale(1);
+    this.add.image(0, 0, 'end').setOrigin(0, 0).setScale(0.145);
 
 
 

@@ -25,7 +25,7 @@ class win extends Phaser.Scene {
     this.load.image("intro2", "assets/intro2.png");
     this.load.image("intro3", "assets/intro3.png");
     this.load.image("end", "assets/end.png");
-    this.load.image("win", "assets/win.png");
+    this.load.image("win", "assets/winwin.png");
 
 
     //Character
@@ -40,7 +40,7 @@ class win extends Phaser.Scene {
 
   create() {
     console.log("*** win scene");
-    this.add.image(0, 0, 'win').setOrigin(0, 0).setScale(1);
+    this.add.image(0, 0, 'win').setOrigin(0, 0).setScale(0.145);
 
     // Add any sound and music here
     // ( 0 = mute to 1 is loudest )
